@@ -43,4 +43,13 @@ class Museum
     winner = ticket_lottery_contestants(exhibit).sample
     winner.name if !winner.nil?
   end
+
+  def announce_lottery_winner(exhibit)
+    winner_name = draw_lottery_winner(exhibit)
+    if winner_name
+      "#{winner_name} has won the the #{exhibit.name} exhibit lottery"
+    else
+      "No winners for this lottery"
+    end
+  end
 end
