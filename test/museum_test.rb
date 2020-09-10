@@ -41,11 +41,11 @@ class MuseumTest < Minitest::Test
     dmns.add_exhibit(dead_sea_scrolls)
     dmns.add_exhibit(imax)
     patron_1 = Patron.new('Bob', 20)
-    patron_1.add_interests(dead_sea_scrolls.name)
-    patron_1.add_interests(gems_and_minerals.name)
+    patron_1.add_interest(dead_sea_scrolls.name)
+    patron_1.add_interest(gems_and_minerals.name)
 
     patron_2 = Patron.new('Sally', 20)
-    patron_2.add_interests(imax.name)
+    patron_2.add_interest(imax.name)
 
     assert_equal [dead_sea_scrolls, gems_and_minerals], dmns.recommend_exhibits(patron_1)
     assert_equal [imax], dmns.recommend_exhibits(patron_2)
@@ -64,10 +64,10 @@ class MuseumTest < Minitest::Test
     assert_equal [], dmns.patrons
 
     patron_1 = Patron.new('Bob', 0)
-    patron_1.add_interests('Gems and Minerals')
-    patron_1.add_interests('Dead Sea Scrolls')
+    patron_1.add_interest('Gems and Minerals')
+    patron_1.add_interest('Dead Sea Scrolls')
     patron_2 = Patron.new('Sally', 20)
-    patron_2.add_interests('Dead Sea Scrolls')
+    patron_2.add_interest('Dead Sea Scrolls')
     patron_3 = Patron.new('Johnny', 5)
 
     dmns.admit(patron_1)
@@ -78,6 +78,7 @@ class MuseumTest < Minitest::Test
   end
 
   def test_patrons_by_exhibit_interests
+
     dmns = Museum.new('Denver Museum of Nature and Science')
     gems_and_minerals = Exhibit.new({ name: 'Gems and Minerals', cost: 0 })
     dead_sea_scrolls = Exhibit.new({ name: 'Dead Sea Scrolls', cost: 10 })
@@ -87,15 +88,13 @@ class MuseumTest < Minitest::Test
     dmns.add_exhibit(dead_sea_scrolls)
     dmns.add_exhibit(imax)
 
-    assert_equal [], dmns.patrons
-
     patron_1 = Patron.new('Bob', 0)
-    patron_1.add_interests('Gems and Minerals')
-    patron_1.add_interests('Dead Sea Scrolls')
+    patron_1.add_interest('Gems and Minerals')
+    patron_1.add_interest('Dead Sea Scrolls')
     patron_2 = Patron.new('Sally', 20)
-    patron_2.add_interests('Dead Sea Scrolls')
+    patron_2.add_interest('Dead Sea Scrolls')
     patron_3 = Patron.new('Johnny', 5)
-    patron_3.add_interests('Dead Sea Scrolls')
+    patron_3.add_interest('Dead Sea Scrolls')
 
     dmns.admit(patron_1)
     dmns.admit(patron_2)

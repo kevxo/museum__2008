@@ -23,8 +23,8 @@ class PatronTest < Minitest::Test
     exhibit1 = Exhibit.new({name: "Gems and Minerals", cost: 0})
     exhibit2 = Exhibit.new({name: "Dead Sea Scrolls", cost: 0})
 
-    patron_1.add_interests(exhibit2.name)
-    patron_1.add_interests(exhibit1.name)
+    patron_1.add_interest(exhibit2.name)
+    patron_1.add_interest(exhibit1.name)
 
     assert_equal ["Dead Sea Scrolls", "Gems and Minerals"], patron_1.interests
   end
